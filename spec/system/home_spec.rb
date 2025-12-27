@@ -1,0 +1,14 @@
+require 'rails_helper'
+
+RSpec.describe "Homes", type: :system do
+  before do
+    driven_by(:rack_test)
+  end
+
+  describe 'トップページの検証' do
+    it '文字が表示される' do
+      visit '/'
+      expect(page).to have_content 'view'
+    end
+  end
+end
