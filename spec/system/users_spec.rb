@@ -172,4 +172,40 @@ RSpec.describe "Users", type: :system do
       expect(page).to have_content("Nickname can't be blank")
     end
   end
+
+  describe "ログイン機能の検証" do
+    before do
+      create(
+        :user,
+        nickname: nickname,
+        email: email,
+        password: password,
+        password_confirmation: password
+      )
+    end
+
+    context "正常系" do
+      it "ログインに成功し、トップページに遷移される" do
+        visit '/users/sign_in'
+
+        fill_in "user_email", with: email
+        fill_in "user_password", with: password
+        click_button "ログイン"
+
+        expect(current_path).to eq('/')
+      end
+    end
+
+    context "異常系" do
+      it "ログインに失敗し、ページを遷移しない" do
+        visit '/users/sign_in'
+
+        fill_in "user_email", with: email
+        fill_in "user_password", with: "NGpassword"
+        click_button "ログイン"
+
+        expect(current_path).to eq('/users/sign_in')
+      end
+    end
+  end
 end
