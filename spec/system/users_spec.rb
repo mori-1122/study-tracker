@@ -118,4 +118,58 @@ RSpec.describe "Users", type: :system do
       )
     end
   end
+
+  context "異常系" do
+    it "emailの形式が不正な場合、ユーザーを作成しない" do
+      visit '/users/sign_up'
+
+      fill_in "user_nickname", with: nickname
+      fill_in "user_email", with: "invalid-email"
+      fill_in "user_password", with: password
+      fill_in "user_password_confirmation", with: password_confirmation
+      click_button "登録する"
+
+      expect(User.count).to eq(0)
+      expect(page).to have_content("Email is invalid")
+    end
+
+    it "emailが既に存在する場合、ユーザーを作成しない" do
+      create(:user, email: email)
+
+      visit '/users/sign_up'
+
+      fill_in "user_nickname", with: nickname
+      fill_in "user_email", with: email
+      fill_in "user_password", with: password
+      fill_in "user_password_confirmation", with: password_confirmation
+      click_button "登録する"
+
+      expect(User.count).to eq(1)
+      expect(page).to have_content("Email has already been taken")
+    end
+
+    it "全項目が空の場合、ユーザーを作成しない" do
+      visit '/users/sign_up'
+
+      click_button "登録する"
+
+      expect(User.count).to eq(0)
+      expect(page).to have_content("Nickname can't be blank")
+      expect(page).to have_content("Email can't be blank")
+      expect(page).to have_content("Password can't be blank")
+    end
+
+    it "nicknameが空白文字のみの場合、ユーザーを作成しない" do
+      visit '/users/sign_up'
+
+      fill_in "user_nickname", with: "   "
+      fill_in "user_email", with: email
+      fill_in "user_password", with: password
+      fill_in "user_password_confirmation", with: password_confirmation
+      click_button "登録する"
+
+      expect(User.count).to eq(0)
+      expect(page).to have_content("Nickname can't be blank")
+    end
+  end
 end
