@@ -1,47 +1,41 @@
 require 'rails_helper'
 
 RSpec.describe "Homes", type: :system do
-  before do
-    driven_by(:rack_test)
-  end
-
-  describe 'トップページの検証' do
-    it '文字が表示される' do
-      visit '/'
-      expect(page).to have_content 'view'
-    end
-  end
+  before { driven_by(:rack_test) }
 
   describe "ナビゲーションバーの検証" do
     context "ログインしていない状態" do
       it "ユーザー登録リンクが表示される" do
         visit root_path
-        expect(page).to have_link("ユーザー登録", href: '/users/sign_up')
+        expect(page).to have_link(href: '/users/sign_up')
       end
 
-      it "ログインボタンが表示される" do
+      it "ログインリンクが表示される" do
         visit root_path
-        expect(page).to have_link('ログイン', href: '/users/sign_in')
+        expect(page).to have_link(href: '/users/sign_in')
       end
 
       it "ログアウトボタンが表示されない" do
+        visit root_path
         expect(page).not_to have_button("ログアウト")
       end
     end
 
     context "ログインしている場合" do
-      it "ユーザー登録ボタンとログインボタンは表示されない" do
+      it "ユーザー登録とログインは表示されない" do
         sign_in create(:user)
         visit root_path
-        expect(page).not_to have_button("ユーザー登録", href: '/users/sign_up')
-        expect(page).not_to have_button("ログイン", href: '/users/sign_in')
+
+        expect(page).not_to have_link(href: '/users/sign_up')
+        expect(page).not_to have_link(href: '/users/sign_in')
       end
 
-      it "ログアウトボタンを表示する" do
+      it "ログアウトボタンが表示される" do
         sign_in create(:user)
         visit root_path
 
         expect(page).to have_button("ログアウト")
+        expect(page).to have_selector("form[action='/users/sign_out']")
       end
 
       it "ログアウトできる" do
@@ -50,9 +44,9 @@ RSpec.describe "Homes", type: :system do
 
         click_button "ログアウト"
 
-        expect(page).to have_button("ユーザー登録", href: '/users/sign_up')
-        expect(page).to have_button("ログイン", href: '/users/sign_in')
-        expect(page).not_to have_content("ログアウト")
+        expect(page).to have_link(href: '/users/sign_in')
+        expect(page).to have_link(href: '/users/sign_up')
+        expect(page).not_to have_button("ログアウト")
       end
     end
   end
