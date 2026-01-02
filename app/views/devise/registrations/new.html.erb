@@ -1,4 +1,8 @@
-<%= form_with scope: resource, as: resource_name, url: registration_path(resource_name), class: "w-3/4 max-w-lg", local: true do |f| %>
+<%= form_with scope: resource,
+              as: resource_name,
+              url: registration_path(resource_name),
+              class: "w-3/4 max-w-lg",
+              local: true do |f| %>
   <div class="bg-white p-10 rounded-3xl shadow-xl border-4 border-pink-100">
     <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -8,9 +12,7 @@
           <span class="text-3xl">StudyTracker</span>
         </div>
       </div>
-      <h2 class="text-3xl font-bold text-gray-800 mb-2">
-        新規登録
-      </h2>
+      <h2 class="text-3xl font-bold text-gray-800 mb-2">新規登録</h2>
       <p class="text-gray-500 text-sm">アカウントを作成してはじめましょう</p>
     </div>
 
@@ -19,45 +21,51 @@
         <label class="text-gray-700 text-sm font-medium mb-3 block">
           メールアドレス
         </label>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", 
-            class: "w-full py-4 px-5 text-base border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-pink-400 focus:ring-4 focus:ring-pink-100 transition-all", 
-            placeholder: "example@mail.com" %>
+        <%= f.email_field :email,
+                          autofocus: true,
+                          autocomplete: "email",
+                          class: "w-full py-4 px-5 text-base border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-pink-400 focus:ring-4 focus:ring-pink-100 transition-all",
+                          placeholder: "example@mail.com" %>
       </div>
 
       <div>
         <label class="text-gray-700 text-sm font-medium mb-3 block">
           ニックネーム
         </label>
-        <%= f.text_field :nickname, autocomplete: "nickname", 
-            class: "w-full py-4 px-5 text-base border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-purple-400 focus:ring-4 focus:ring-purple-100 transition-all", 
-            placeholder: "お好きな名前を入力" %>
+        <%= f.text_field :nickname,
+                         autocomplete: "nickname",
+                         class: "w-full py-4 px-5 text-base border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-purple-400 focus:ring-4 focus:ring-purple-100 transition-all",
+                         placeholder: "お好きな名前を入力" %>
       </div>
 
       <div>
         <label class="text-gray-700 text-sm font-medium mb-3 block">
           パスワード <span class="text-gray-400 text-xs ml-1">(6文字以上)</span>
         </label>
-        <%= f.password_field :password, autocomplete: "new-password", 
-            class: "w-full py-4 px-5 text-base border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-blue-400 focus:ring-4 focus:ring-blue-100 transition-all", 
-            placeholder: "••••••••" %>
+        <%= f.password_field :password,
+                             autocomplete: "new-password",
+                             class: "w-full py-4 px-5 text-base border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-blue-400 focus:ring-4 focus:ring-blue-100 transition-all",
+                             placeholder: "••••••••" %>
       </div>
 
       <div>
         <label class="text-gray-700 text-sm font-medium mb-3 block">
           確認用パスワード
         </label>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", 
-            class: "w-full py-4 px-5 text-base border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-blue-400 focus:ring-4 focus:ring-blue-100 transition-all", 
-            placeholder: "••••••••" %>
+        <%= f.password_field :password_confirmation,
+                             autocomplete: "new-password",
+                             class: "w-full py-4 px-5 text-base border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-blue-400 focus:ring-4 focus:ring-blue-100 transition-all",
+                             placeholder: "••••••••" %>
       </div>
     </div>
 
     <div class="mt-12">
       <%= f.submit "登録する",
-        class: "w-full bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400
-                hover:from-pink-500 hover:via-purple-500 hover:to-blue-500
-                text-white font-bold py-5 px-6 rounded-2xl shadow-lg
-                hover:shadow-xl transform hover:-translate-y-0.5
-                transition-all duration-200 text-lg" %>
+                   class: "w-full bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400
+                           hover:from-pink-500 hover:via-purple-500 hover:to-blue-500
+                           text-white font-bold py-5 px-6 rounded-2xl shadow-lg
+                           hover:shadow-xl transform hover:-translate-y-0.5
+                           transition-all duration-200 text-lg" %>
     </div>
+  </div>
 <% end %>
