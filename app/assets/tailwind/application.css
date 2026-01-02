@@ -1,6 +1,0 @@
-@import "tailwindcss";
-
-/* Tailwind v4 では必須 */
-@source "../views/**/*.{html,erb}";
-@source "../helpers/**/*.rb";
-@source "../javascript/**/*.js";
