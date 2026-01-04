@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new
+    @post = Post.new(post_params)
     @post.user_id = current_user.id
 
     if @post.save
@@ -16,7 +16,7 @@ class PostsController < ApplicationController
       redirect_to root_path
     else
       flash[:notice] = "投稿に失敗しました"
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -28,7 +28,7 @@ class PostsController < ApplicationController
 
   private
 
-  def strong_params
-    params.expect(posts: [ :title, :content ])
+  def post_params
+    params.expect(post: [ :title, :content ])
   end
 end
