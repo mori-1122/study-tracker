@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
-  get "posts/index"
-  get "posts/new"
-  get "posts/create"
-  get "posts/show"
-  get "posts/destroy"
   devise_for :users
   root "home#top"
+  resources :posts, only: [ :index, :new, :create, :show, :destroy ]
 end
