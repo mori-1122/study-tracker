@@ -27,9 +27,8 @@
         <label class="text-gray-700 text-sm font-medium mb-3 block">
           本文
         </label>
-        <%= f.text_area :content, rows: "5", 
-            class: "w-full py-4 px-5 text-base border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-purple-400 focus:ring-4 focus:ring-purple-100 transition-all resize-none", 
-            placeholder: "環境構築を無事に終えることができた!" %>
+        <%= f.rich_textarea :content, rows: "5", 
+            class: "w-full py-4 px-5 text-base border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-purple-400 focus:ring-4 focus:ring-purple-100 transition-all resize-none" %>
       </div>
     </div>
 
