@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ===== Trix toolbar fix ===== */
+trix-toolbar .trix-button {
+  appearance: none;
+  background: transparent;
+  border: none;
+}
+
+trix-toolbar .trix-button--icon {
+  text-indent: -9999px;
+}
+
+trix-toolbar .trix-button--icon::before {
+  content: "";
+}
