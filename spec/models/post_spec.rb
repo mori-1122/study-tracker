@@ -30,7 +30,7 @@ RSpec.describe Post, type: :model do
     end
 
     it "contentが空の場合は無効である" do
-      subject.content = nil
+      subject.content = ""
       subject.valid?
       expect(subject.errors[:content]).to include("が入力されていません。")
     end
@@ -46,7 +46,7 @@ RSpec.describe Post, type: :model do
       post = create(:post, title: title, content: content, user: user)
 
       expect(post.title).to eq("テストタイトル")
-      expect(post.content).to eq("テスト本文")
+      expect(post.content.body.to_plain_text).to eq("テスト本文")
       expect(post.user_id).to eq(user.id)
     end
   end
